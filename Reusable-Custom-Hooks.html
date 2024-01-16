@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning-React</title>
+
+    <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+
+    <!-- <script src="https://unpkg.com/prop-types@15.6.1/prop-types.js"></script> -->
+
+    <style>
+      body {
+        background-color: aliceblue;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+
+      .crimson {
+        color: crimson;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const rootElement = document.getElementById('root');
+
+      function useLocalStorageState(key, defaultValue) {
+        const [state, setState] = React.useState(
+          () => window.localStorage.getItem(key) || defaultValue
+        );
+
+        React.useEffect(() => {
+          console.log('[useLocalStorageState:useEffect] localStorage');
+          window.localStorage.setItem(key, state);
+        }, [key, state]); // Presence of key in dependency array is crucial.
+
+        {
+          `In this example, the useLocalStorageState hook is used with a dynamically changing key (dynamicKey).
+           In this case, it's crucial to include dynamicKey in the dependency array of the useEffect to ensure
+           that the effect is re-run when the key changes.`;
+          `
+          function DynamicKeyExample() {
+            const [dynamicKey, setDynamicKey] = useState('user1');\
+
+            // The key can change dynamically based on some condition
+            const [data, setData] = useLocalStorageState(dynamicKey, '');
+
+            const handleKeyChange = () => {
+              // Change the key dynamically
+              setDynamicKey('user2');
+            };
+            
+            return (
+              <div>
+                <button onClick={handleKeyChange}>Change Key</button>
+                <p>
+                  Data stored for {dynamicKey}: {data}
+                </p>
+              </div>
+            );
+          }`;
+        }
+
+        return [state, setState];
+      }
+
+      function Greeting() {
+        const [name, setName] = useLocalStorageState('name');
+
+        const handleChange = event => setName(event.target.value);
+
+        console.log('[render] Greeting');
+
+        return (
+          <section>
+            <div>
+              <form>
+                <label htmlFor="name">Name: </label>
+                <input
+                  value={name}
+                  onChange={handleChange}
+                  type="text"
+                  id="name"
+                />
+              </form>
+              {name ? <strong>Hello {name}</strong> : 'Please type your name'}
+            </div>
+          </section>
+        );
+      }
+
+      function App() {
+        const [count, setCount] = React.useState(0);
+
+        console.log('[render] App');
+
+        return (
+          <main>
+            <button onClick={() => setCount(c => c + 1)}>{count}</button>
+            <Greeting></Greeting>
+          </main>
+        );
+      }
+
+      ReactDOM.render(<App />, rootElement);
+    </script>
+  </body>
+</html>

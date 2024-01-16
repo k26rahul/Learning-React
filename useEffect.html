@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning-React</title>
+
+    <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+
+    <!-- <script src="https://unpkg.com/prop-types@15.6.1/prop-types.js"></script> -->
+
+    <style>
+      body {
+        background-color: aliceblue;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+
+      .crimson {
+        color: crimson;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const rootElement = document.getElementById('root');
+
+      function App() {
+        const [name, setName] = React.useState(
+          window.localStorage.getItem('name') || ''
+        );
+
+        React.useEffect(() => {
+          window.localStorage.setItem('name', name);
+        });
+
+        const handleChange = event => setName(event.target.value);
+
+        return (
+          <section>
+            <div>
+              <form>
+                <label htmlFor="name">Name: </label>
+                <input
+                  value={name}
+                  onChange={handleChange}
+                  type="text"
+                  id="name"
+                />
+              </form>
+              {name ? <strong>Hello {name}</strong> : 'Please type your name'}
+            </div>
+          </section>
+        );
+      }
+
+      ReactDOM.render(<App />, rootElement);
+    </script>
+  </body>
+</html>

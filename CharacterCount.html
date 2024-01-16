@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning-React</title>
+
+    <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+
+    <!-- <script src="https://unpkg.com/prop-types@15.6.1/prop-types.js"></script> -->
+
+    <style>
+      body {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+
+      .crimson {
+        color: crimson;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      function CharacterCount({ text }) {
+        return (
+          <div>
+            The "{text}"" has{' '}
+            {text.length ? <strong>{text.length}</strong> : 'No'} characters.
+          </div>
+        );
+      }
+
+      const element = (
+        <>
+          <CharacterCount text="Hello World"></CharacterCount>
+          <CharacterCount text=""></CharacterCount>
+        </>
+      );
+
+      const rootElement = document.getElementById('root');
+      ReactDOM.render(element, rootElement);
+    </script>
+  </body>
+</html>

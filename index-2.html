@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning-React</title>
+
+    <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+
+    <style>
+      body {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+
+      .hello {
+        color: crimson;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const rootElement = document.getElementById('root');
+
+      const helloElement = React.createElement(
+        'h1',
+        { className: 'hello' },
+        'Hello World!,'
+      );
+
+      const goodbyeElement = React.createElement(
+        'h1',
+        { className: 'hello' },
+        'Goodbye 👋'
+      );
+
+      // const element = React.createElement(
+      //   React.Fragment,
+      //   null,
+      //   helloElement,
+      //   <span>🍭</span>,
+      //   goodbyeElement
+      // );
+
+      // const element = (
+      //   <React.Fragment>
+      //     {React.createElement('h1', { className: 'hello' }, 'Hello World!,')}
+      //   </React.Fragment>
+      // );
+
+      // const element = (
+      //   <React.Fragment>
+      //     {helloElement} {goodbyeElement}
+      //   </React.Fragment>
+      // );
+
+      // const element = (
+      //   <React.Fragment
+      //     children={[helloElement, goodbyeElement]}
+      //   ></React.Fragment>
+      // );
+
+      // const element = (
+      //   <>
+      //     {helloElement} {goodbyeElement}
+      //     <span>See you again!💋💋</span>
+      //   </>
+      // );
+      // ReactDOM.render(element, rootElement);
+
+      ReactDOM.render(
+        <>
+          {helloElement} {goodbyeElement}
+          <span>See you again!💋💋</span>
+        </>,
+        rootElement
+      );
+    </script>
+
+    <script type="text/babel">
+      // const rootElement = document.getElementById('root');
+      // const helloClass = 'hello';
+      // const helloText = 'Hello World!';
+      // const goodbyeText = ', Goodbye 👋';
+
+      // const children = [helloText, goodbyeText];
+      // const props = { children, className: helloClass };
+      // const element = <h1 id="greetings" {...props} />;
+
+      // const element = <h1 id="greetings" {...props} className="" />;
+      // const element = (
+      //   <h1 className={helloClass} children={[helloText, goodbyeText]} />
+      // );
+      // const element = (
+      //   <h1 className={helloClass}>
+      //     {helloText}
+      //     {goodbyeText}
+      //   </h1>
+      // );
+
+      // console.log(element);
+      // ReactDOM.render(element, rootElement);
+    </script>
+
+    <script>
+      // const rootElement = document.getElementById('root');
+      // const element = React.createElement('h1', {
+      //   children: [
+      //     'Hello World',
+      //     '!',
+      //     ', Goodbye',
+      //     React.createElement(
+      //       'span',
+      //       {
+      //         key: 'bye',
+      //       },
+      //       '👋'
+      //     ),
+      //   ],
+      //   className: 'hello',
+      // });
+
+      // console.log(element);
+
+      // ReactDOM.render(element, rootElement);
+
+      // const element = document.createElement('h1');
+      // element.textContent = 'Hello World';
+      // rootElement.appendChild(element);
+    </script>
+  </body>
+</html>

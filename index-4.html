@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning-React</title>
+
+    <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+    <script src="https://unpkg.com/prop-types@15.6.1/prop-types.js"></script>
+
+    <style>
+      body {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+
+      .crimson {
+        color: crimson;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      function SayHello({ firstName, lastName }) {
+        return (
+          <h1 className="crimson">
+            Hello, {firstName} {lastName} 👋
+          </h1>
+        );
+      }
+
+      // const PropTypes = {
+      //   string(props, propName, componentName) {
+      //     if (typeof props[propName] !== 'string') {
+      //       return new Error(
+      //         `👿 Hey, the component ${componentName} needs the prop ${propName} to be a string, but you passed a ${typeof props[
+      //           propName
+      //         ]}`
+      //       );
+      //     }
+      //   },
+      // };
+
+      SayHello.propTypes = {
+        firstName: PropTypes.string.isRequired,
+        lastName: PropTypes.string.isRequired,
+      };
+
+      // const element = <SayHello firstName={false}></SayHello>;
+      const element = <SayHello firstName="Rahul" lastName="Maurya"></SayHello>;
+
+      const rootElement = document.getElementById('root');
+      ReactDOM.render(element, rootElement);
+    </script>
+  </body>
+</html>
